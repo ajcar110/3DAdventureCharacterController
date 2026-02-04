@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://oabmeao0c38"]
+
+[ext_resource type="PackedScene" uid="uid://do0y77aa57hxw" path="res://Scenes/player.tscn" id="1_ycph5"]
+[ext_resource type="Material" uid="uid://6k43jx6uopqn" path="res://Scenes/test_room.tres" id="2_6idp7"]
+[ext_resource type="PackedScene" uid="uid://dmsknih63tuah" path="res://Scenes/grind_rail.tscn" id="3_rx0dc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ycph5"]
+
+[sub_resource type="Sky" id="Sky_6idp7"]
+sky_material = SubResource("ProceduralSkyMaterial_ycph5")
+
+[sub_resource type="Environment" id="Environment_rx0dc"]
+background_mode = 2
+sky = SubResource("Sky_6idp7")
+
+[sub_resource type="PrismMesh" id="PrismMesh_rx0dc"]
+left_to_right = 1.0
+size = Vector3(45, 15, 30)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_ycph5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.898552, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rx0dc")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_mask = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(250, 2, 250)
+material = ExtResource("2_6idp7")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -75)
+size = Vector3(100, 20, 100)
+material = ExtResource("2_6idp7")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.107178, 3.2495956, -62.287354)
+size = Vector3(29.785645, 9.311035, 125.42529)
+material = ExtResource("2_6idp7")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, -101.87)
+size = Vector3(100, 20, 46.260742)
+material = ExtResource("2_6idp7")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 35.74974)
+mesh = SubResource("PrismMesh_rx0dc")
+
+[node name="Path3D" parent="." instance=ExtResource("3_rx0dc")]

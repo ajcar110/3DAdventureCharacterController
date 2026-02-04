@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://do0y77aa57hxw"]
+
+[ext_resource type="Script" uid="uid://duqt7mpygbowa" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://uk457g6211rl" path="res://Scripts/Components/input_component.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://4mur4cx4qlti" path="res://Scripts/Components/camera_component.gd" id="2_vgqql"]
+[ext_resource type="Script" uid="uid://xc5top7ddx1b" path="res://Scripts/Components/movement_component.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://l6iypuwmem8c" path="res://Scripts/Components/wall_run_component.gd" id="5_fkybt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_f60y1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vgqql"]
+size = Vector3(0.5, 0.5, 0.25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vgqql"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fkybt"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("input_component", "movement_component", "camera_component", "wall_run_component")]
+script = ExtResource("1_cvnsp")
+input_component = NodePath("InputComponent")
+movement_component = NodePath("MovementComponent")
+camera_component = NodePath("CameraComponent")
+wall_run_component = NodePath("WallRunComponent")
+
+[node name="InputComponent" type="Node" parent="."]
+script = ExtResource("1_v0iea")
+metadata/_custom_type_script = "uid://uk457g6211rl"
+
+[node name="MovementComponent" type="Node" parent="." node_paths=PackedStringArray("body", "model")]
+script = ExtResource("3_6t5aa")
+body = NodePath("..")
+model = NodePath("../Model")
+base_speed = 15
+acceleration = 0.25
+time_to_jump_peak = 0.6
+time_to_fall = 0.5
+max_jumps = 2
+metadata/_custom_type_script = "uid://xc5top7ddx1b"
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_f60y1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5185883, -0.531916)
+mesh = SubResource("BoxMesh_vgqql")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vgqql")
+
+[node name="CameraComponent" type="SpringArm3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.547689, 0)
+top_level = true
+shape = SubResource("SphereShape3D_fkybt")
+spring_length = 3.5
+margin = 0.3
+script = ExtResource("2_vgqql")
+player = NodePath("..")
+
+[node name="Camera3D" type="Camera3D" parent="CameraComponent"]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 2, 3.5)
+fov = 87.1
+
+[node name="WallRunComponent" type="Node3D" parent="." node_paths=PackedStringArray("body", "ray_left", "ray_right")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+script = ExtResource("5_fkybt")
+body = NodePath("..")
+ray_left = NodePath("RayCastwallRunLeft")
+ray_right = NodePath("RayCastwallRunRight")
+
+[node name="RayCastwallRunLeft" type="RayCast3D" parent="WallRunComponent"]
+target_position = Vector3(-1, 0, 0)
+
+[node name="RayCastwallRunRight" type="RayCast3D" parent="WallRunComponent"]
+target_position = Vector3(1, 0, 0)

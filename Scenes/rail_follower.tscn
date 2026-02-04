@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://iqv6jg1wyosr"]
+
+[ext_resource type="Script" uid="uid://y5wglktom5it" path="res://Scripts/rail_follower.gd" id="1_8e0tu"]
+
+[node name="RailFollower" type="PathFollow3D" groups=["Rail Follower"]]
+loop = false
+tilt_enabled = false
+script = ExtResource("1_8e0tu")
+move_speed = 30.0
