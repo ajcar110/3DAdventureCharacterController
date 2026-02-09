@@ -2,7 +2,7 @@ class_name MovementComponent
 extends Node
 
 @export var body: CharacterBody3D
-@export var model: MeshInstance3D
+@export var visuals: Node3D
 @export var floor_ray: RayCast3D
 
 @export_group("Movement")

@@ -2,7 +2,7 @@ class_name WallRunComponent
 extends Node3D
 
 @export var body: Player
-@export var model: MeshInstance3D
+@export var visuals: Node3D
 @export var ray_left: RayCast3D
 @export var ray_right: RayCast3D
 
@@ -33,16 +33,16 @@ func tik():
 			xform.basis.x  = -wall_normal
 			collision_distance = ray_right.get_collision_point().distance_to(global_position) - distance_offset
 			
-			model.rotation_degrees.z = 45
+			visuals.rotation_degrees.z = 45
 			
 		elif ray_left.is_colliding():
 			wall_normal = ray_left.get_collision_normal()
 			xform.basis.x  = wall_normal
 			collision_distance = ray_left.get_collision_point().distance_to(global_position) - distance_offset
 		
-			model.rotation_degrees.z = -45
+			visuals.rotation_degrees.z = -45
 			
-		model.position = collision_distance * -wall_normal
+		visuals.position = collision_distance * -wall_normal
 		
 		xform.basis = xform.basis.orthonormalized()
 		body.global_transform = body.global_transform.interpolate_with(xform,0.3)

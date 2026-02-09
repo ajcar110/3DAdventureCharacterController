@@ -2,18 +2,24 @@ class_name Player
 
 extends CharacterBody3D
 
-@export var model: MeshInstance3D
+@export var visuals: Node3D
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var camera_component: CameraComponent
 @export var wall_run_component: WallRunComponent
 @export var gravity_component: GravityComponent
 @export var rail_grinding_component: RailGrindComponent
+@export var animation_player: AnimationPlayer
 
 
 var wall_running:= false
 var grinding := false
 
+var state: BasePlayerState = PlayerStates.IDLE
+
+func _ready():
+	state.enter(self)
+	
 func _physics_process(delta):
 	input_component.update()
 	var modified_direction = get_move_input()
@@ -27,14 +33,16 @@ func _physics_process(delta):
 	gravity_component.near_wall = wall_run_component.wall_nearby()
 	gravity_component.near_wall_normal = wall_run_component.wall_normal
 	
-	if velocity.y < 0.0 and wall_run_component.wall_nearby() and input_component.grab_held:
-		wall_run_component.start()
-		wall_running = true
-	else: 
-		wall_running = false
-		if model.rotation_degrees.z != 0: #Altered by wall running
-			model.rotation_degrees.z = 0
-			model.position = Vector3.UP
+	## State Logic##
+	state.validate_state(self)
+	state.tic(self,delta)
+	
+
+	
+	wall_running = false
+	if visuals.rotation_degrees.z != 0: #Altered by wall running
+		visuals.rotation_degrees.z = 0
+		visuals.position = Vector3.UP
 	
 	if wall_running:
 		wall_run_component.tik()
@@ -60,3 +68,10 @@ func get_move_input()-> Vector3:
 	direction = (camera_component.global_basis * input_component.move_dir)
 	direction = Vector3(direction.x,0,direction.z).normalized() * input_dir.length()
 	return direction
+
+
+func change_state_to(next_state: BasePlayerState):
+	state.exit(self)
+	state = next_state
+	state.enter(self)
+	

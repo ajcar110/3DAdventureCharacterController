@@ -2,7 +2,7 @@ class_name GravityComponent
 extends Node
 
 @export var body: Player
-@export var model: MeshInstance3D
+@export var visuals: Node3D
 
 @export_subgroup("Jump")
 @export var jump_height: float = 6 ## how high the player will jump on one jump
@@ -59,7 +59,9 @@ func tik(delta: float):
 
 func jump():
 	body.velocity.y += jump_velocity
-
+	visuals.rotation_degrees.z = 0
+	visuals.position = Vector3.ZERO
+	
 ## Returns a float based on players current conditions
 func current_gravity() -> float:
 	if body.wall_running:

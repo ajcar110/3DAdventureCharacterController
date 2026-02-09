@@ -8,12 +8,14 @@ extends SpringArm3D
 var player_tp_distace: float = 0.0
 var mouse_input: Vector2 = Vector2.ZERO
 var init_rotation: Vector3
+var offset: Vector3
 
 
 func _ready():
 	spring_length = camera.position.z
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	init_rotation = rotation_degrees
+	offset = self.position
 
 func _process(delta):
 	var look_input := Input.get_vector("camera_right","camera_left","camera_down","camera_up")
@@ -26,8 +28,8 @@ func _process(delta):
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):
-	position = player.position
-	position.y += 2
+	position = player.position + offset
+	
 
 func _input(event)-> void:
 	if event is InputEventMouseMotion:
