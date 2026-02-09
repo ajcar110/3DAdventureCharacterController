@@ -37,13 +37,7 @@ func tik(delta: float):
 	if body.wall_running:
 		if jump_count > 1:
 			jump_count -= 1
-	# jump
-	if wants_jump and jump_count < max_jumps and not body.wall_running and not body.grinding:
-		jump_count += 1
-		print("Jumps Made")
-		print(jump_count)
-		print("########")
-		jump()
+
 	if grab_released and not body.is_on_floor() and near_wall:
 		jump()
 		body.velocity.x = near_wall_normal.x * wall_jump_velocity
@@ -74,3 +68,7 @@ func current_gravity() -> float:
 		return jump_gravity
 	else:
 		return fall_gravity
+
+
+func validate_jump() -> bool:
+	return jump_count <= max_jumps

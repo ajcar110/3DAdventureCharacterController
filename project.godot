@@ -24,6 +24,10 @@ config/icon="res://icon.svg"
 PlayerSignals="*res://Scripts/player_signals.gd"
 PlayerStates="*res://Player/Scripts/PlayerStates.gd"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 move_left={

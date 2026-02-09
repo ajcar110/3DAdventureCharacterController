@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var gravity_component: GravityComponent
 @export var rail_grinding_component: RailGrindComponent
 @export var animation_player: AnimationPlayer
-
+@export var debug_component: Node
 
 var wall_running:= false
 var grinding := false
@@ -22,6 +22,7 @@ func _ready():
 	
 func _physics_process(delta):
 	input_component.update()
+	debug_component.update()
 	var modified_direction = get_move_input()
 	
 	wall_run_component.direction = modified_direction
@@ -69,6 +70,8 @@ func get_move_input()-> Vector3:
 	direction = Vector3(direction.x,0,direction.z).normalized() * input_dir.length()
 	return direction
 
+func get_horizontal_velocity() -> float:
+	return Vector2(velocity.x, velocity.z).length()
 
 func change_state_to(next_state: BasePlayerState):
 	state.exit(self)
