@@ -90,3 +90,6 @@ func find_nearest_rail_follower(player_position, rail_node):
 	return nearest_node
 
 #END GRINDING
+
+func validate_grind() -> bool:
+	return grind_shape_cast.is_colliding()

@@ -21,6 +21,9 @@ func validate_state(player: Player) -> void:
 	if (player.input_component.jump_pressed and
 	 player.gravity_component.validate_jump(self)):
 		player.change_state_to(PlayerStates.AIRJUMP)
-
+	
+	## RailGrind
+	if player.rail_grinding_component.validate_grind():
+		player.change_state_to(PlayerStates.GRIND)
 func tic(player: Player,delta: float) -> void:
 	player.movement_component.tik(delta)

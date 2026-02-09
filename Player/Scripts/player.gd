@@ -36,12 +36,8 @@ func _physics_process(delta):
 	state.validate_state(self)
 	state.tic(self,delta)
 	
-
-	if visuals.rotation_degrees.z != 0: #Altered by wall running
-		visuals.rotation_degrees.z = 0
-		visuals.position = Vector3.UP
 	
-	elif rail_grinding_component.grind_shape_cast.is_colliding():
+	if rail_grinding_component.grind_shape_cast.is_colliding():
 		rail_grinding_component.rail_grinding(delta)
 		rail_grinding_component.grind_timer(delta)
 		

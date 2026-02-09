@@ -81,4 +81,6 @@ func validate_jump(state: BasePlayerState) -> bool:
 			return can_air_jump
 		PlayerStates.WALLRUN:
 			return can_wall_jump
+		PlayerStates.GRIND:
+			return true
 	return false
