@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://4mur4cx4qlti" path="res://Scripts/Components/camera_component.gd" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://xc5top7ddx1b" path="res://Scripts/Components/movement_component.gd" id="3_6t5aa"]
 [ext_resource type="Script" uid="uid://djn46vq1qelik" path="res://Scripts/Components/gravity_component.gd" id="4_f1ek2"]
+[ext_resource type="FontFile" uid="uid://cfmf5dduj46uj" path="res://Assets/Fonts/Architects_Daughter/ArchitectsDaughter-Regular.ttf" id="6_fd4e3"]
 [ext_resource type="Script" uid="uid://l6iypuwmem8c" path="res://Scripts/Components/wall_run_component.gd" id="6_tx1dd"]
 [ext_resource type="Script" uid="uid://b2cnqx2r4okia" path="res://Scripts/Components/rail_grind_component.gd" id="7_3smsa"]
 [ext_resource type="Animation" uid="uid://drt1poncps0wr" path="res://Assets/Player/Animations/Idle.res" id="8_tx1dd"]
@@ -1098,6 +1099,9 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 47.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_fd4e3")
+theme_override_font_sizes/font_size = 64
 text = "STATE"
 
 [node name="CameraComponent" type="SpringArm3D" parent="." unique_id=248571927 node_paths=PackedStringArray("player")]

@@ -33,16 +33,12 @@ func tik():
 			xform.basis.x  = -wall_normal
 			collision_distance = ray_right.get_collision_point().distance_to(global_position) - distance_offset
 			
-			visuals.rotation_degrees.z = 45
 			
 		elif ray_left.is_colliding():
 			wall_normal = ray_left.get_collision_normal()
 			xform.basis.x  = wall_normal
 			collision_distance = ray_left.get_collision_point().distance_to(global_position) - distance_offset
 		
-			visuals.rotation_degrees.z = -45
-			
-		visuals.position = collision_distance * -wall_normal
 		
 		xform.basis = xform.basis.orthonormalized()
 		body.global_transform = body.global_transform.interpolate_with(xform,0.3)

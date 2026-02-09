@@ -1,10 +1,11 @@
-class_name JumpState
+class_name WallJumpState
 extends BasePlayerState
 
 
 func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Jump")
 	player.gravity_component.jump()
+	player.gravity_component.can_wall_jump = false
 
 
 

@@ -12,8 +12,11 @@ func validate_state(player: Player) -> void:
 		player.change_state_to(PlayerStates.FALL)
 	
 	if (player.input_component.jump_pressed and
-	 player.gravity_component.validate_jump()):
+	 player.gravity_component.validate_jump(self)):
 		player.change_state_to(PlayerStates.JUMP)
 	
 	if player.get_horizontal_velocity() > 0.01:
 		player.change_state_to(PlayerStates.WALK)
+
+func tic(player: Player,delta: float) -> void:
+	player.movement_component.tik(delta)

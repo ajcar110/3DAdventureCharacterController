@@ -23,14 +23,12 @@ func _ready():
 func _physics_process(delta):
 	input_component.update()
 	debug_component.update()
-	var modified_direction = get_move_input()
 	
-	wall_run_component.direction = modified_direction
-	movement_component.move_dir = modified_direction
-	gravity_component.mov_dir = modified_direction
-	gravity_component.wants_jump = input_component.jump_pressed
+	## ALL MOVEMENT COMPONENTS MUST UPDATE IN FUNCTION TO ADJUST BY CAMERA
+	modify_directions_by_camera_angle()
+	
+	##dependent info shared between components
 	rail_grinding_component.wants_dismount = input_component.jump_pressed
-	gravity_component.grab_released = input_component.grab_released
 	gravity_component.near_wall = wall_run_component.wall_nearby()
 	gravity_component.near_wall_normal = wall_run_component.wall_normal
 	
@@ -39,20 +37,13 @@ func _physics_process(delta):
 	state.tic(self,delta)
 	
 
-	
-	wall_running = false
 	if visuals.rotation_degrees.z != 0: #Altered by wall running
 		visuals.rotation_degrees.z = 0
 		visuals.position = Vector3.UP
 	
-	if wall_running:
-		wall_run_component.tik()
-	
 	elif rail_grinding_component.grind_shape_cast.is_colliding():
 		rail_grinding_component.rail_grinding(delta)
 		rail_grinding_component.grind_timer(delta)
-	else:
-		movement_component.tik(delta)
 		
 	if grinding and not rail_grinding_component.grind_shape_cast.is_colliding():
 		rail_grinding_component.detach_from_rail()
@@ -78,3 +69,10 @@ func change_state_to(next_state: BasePlayerState):
 	state = next_state
 	state.enter(self)
 	
+
+func modify_directions_by_camera_angle():
+	var modified_direction = get_move_input()
+	
+	wall_run_component.direction = modified_direction
+	movement_component.move_dir = modified_direction
+	gravity_component.mov_dir = modified_direction

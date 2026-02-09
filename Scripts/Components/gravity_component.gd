@@ -20,9 +20,10 @@ extends Node
 @onready var jump_velocity: float = (2.0 * jump_height) / time_to_jump_peak
 @onready var wall_jump_velocity: float = jump_height / time_to_jump_peak
 
-var wants_jump := false
-var grab_released:= false
-var jump_count :int = 0
+
+
+var can_air_jump: = true
+var can_wall_jump: = true
 var mov_dir := Vector3.ZERO
 var near_wall := false
 var near_wall_normal
@@ -33,29 +34,25 @@ func _ready():
 func tik(delta: float):
 	
 	if body.is_on_floor():
-		jump_count = 0
-	if body.wall_running:
-		if jump_count > 1:
-			jump_count -= 1
+		can_air_jump = true
+		can_wall_jump = true
 
-	if grab_released and not body.is_on_floor() and near_wall:
-		jump()
-		body.velocity.x = near_wall_normal.x * wall_jump_velocity
-		body.velocity.z = near_wall_normal.z * wall_jump_velocity
-		body.velocity += -body.global_transform.basis.z * jump_velocity
-	if wants_jump and body.grinding:
-		jump()
-		
-	wants_jump = false
+
 		#Gravity
 	if body.velocity.y > max_fall_speed:
 		body.velocity.y += current_gravity() * delta
 
 func jump():
-	body.velocity.y += jump_velocity
+	body.velocity.y = jump_velocity
 	visuals.rotation_degrees.z = 0
 	visuals.position = Vector3.ZERO
+
+func wall_jump():
+	body.velocity.x = near_wall_normal.x * wall_jump_velocity
+	body.velocity.z = near_wall_normal.z * wall_jump_velocity
+	body.velocity += -body.global_transform.basis.z * jump_velocity
 	
+
 ## Returns a float based on players current conditions
 func current_gravity() -> float:
 	if body.wall_running:
@@ -70,5 +67,18 @@ func current_gravity() -> float:
 		return fall_gravity
 
 
-func validate_jump() -> bool:
-	return jump_count <= max_jumps
+func validate_jump(state: BasePlayerState) -> bool:
+	match state:
+		PlayerStates.IDLE:
+			return true
+		PlayerStates.WALK:
+			return true
+		PlayerStates.RUN:
+			return true
+		PlayerStates.JUMP:
+			return can_air_jump
+		PlayerStates.FALL:
+			return can_air_jump
+		PlayerStates.WALLRUN:
+			return can_wall_jump
+	return false
