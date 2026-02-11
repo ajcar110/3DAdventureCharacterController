@@ -28,13 +28,13 @@ func _process(delta):
 		elif !forward:
 			path_follow_3d.progress -= move_speed * delta
  
-		if path_follow_3d.get_progress_ratio() >= 0.99:
+		if path_follow_3d.get_progress_ratio() >= 0.9998:
 			detach = true
 			grinding = false
 			direction_selected = false
 			PlayerSignals.rail_complete.emit()
 		
-		if path_follow_3d.get_progress_ratio() <= 0.002:
+		if path_follow_3d.get_progress_ratio() <= 0.0002:
 			detach = true
 			grinding = false
 			direction_selected = false

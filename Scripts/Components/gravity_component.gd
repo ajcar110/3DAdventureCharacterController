@@ -40,7 +40,7 @@ func tik(delta: float):
 
 		#Gravity
 	if body.velocity.y > max_fall_speed:
-		body.velocity.y += current_gravity() * delta
+		body.velocity.y += current_gravity(body.state) * delta
 
 func jump():
 	body.velocity.y = jump_velocity
@@ -54,17 +54,32 @@ func wall_jump():
 	
 
 ## Returns a float based on players current conditions
-func current_gravity() -> float:
-	if body.wall_running:
-		if mov_dir != Vector3.ZERO:
-			return wall_gravity
-		else: return wall_drop_gravity
-	elif body.grinding:
-		return 0.0
-	elif body.velocity.y > 0.0:
-		return jump_gravity
-	else:
-		return fall_gravity
+func current_gravity(state) -> float:
+	match state:
+		PlayerStates.IDLE:
+			return jump_gravity
+		PlayerStates.WALK:
+			return jump_gravity
+		PlayerStates.RUN:
+			return jump_gravity
+		PlayerStates.JUMP:
+			return jump_gravity
+		PlayerStates.FALL:
+			return fall_gravity
+			
+		PlayerStates.WALLRUN:
+			if body.input_component.move_dir != Vector3.ZERO:
+				return wall_gravity
+			else:
+				return wall_drop_gravity
+				
+		PlayerStates.GRIND:
+			return 0.0
+			
+		PlayerStates.GRINDJUMP:
+			return jump_gravity
+			
+	return fall_gravity
 
 
 func validate_jump(state: BasePlayerState) -> bool:

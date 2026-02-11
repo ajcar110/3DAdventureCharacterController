@@ -4,6 +4,7 @@ extends BasePlayerState
 
 func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Fall")
+	player.rail_grinding_component.grind_shape_cast.enabled= true
 
 
 
@@ -25,5 +26,6 @@ func validate_state(player: Player) -> void:
 	## RailGrind
 	if player.rail_grinding_component.validate_grind():
 		player.change_state_to(PlayerStates.GRIND)
+	
 func tic(player: Player,delta: float) -> void:
 	player.movement_component.tik(delta)

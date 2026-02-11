@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cyu38yc1jgb1q"]
+
+[ext_resource type="Shader" uid="uid://ivgb6exnh7w6" path="res://ShaderScripts/toonwater.gdshader" id="1_hu3sp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rx0dc"]
+noise_type = 3
+frequency = 0.1005
+fractal_lacunarity = 2.82
+fractal_gain = 0.6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_afs4w"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_rx0dc")
+seamless = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3tvqv"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_rx0dc")
+seamless = true
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hu3sp")
+shader_parameter/time_speed = 0.01
+shader_parameter/surface_speed = 0.01
+shader_parameter/spin = 1.0
+shader_parameter/brightness = 0.6
+shader_parameter/color_intensity = 1.04
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.76
+shader_parameter/wave_texture = SubResource("NoiseTexture2D_3tvqv")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_afs4w")
+shader_parameter/wave_height = 0.5
+shader_parameter/texture_height = 0.5
+shader_parameter/color1 = Color(0.6431373, 0.8666667, 0.85882354, 1)
+shader_parameter/color2 = Color(0.30980393, 0.56078434, 0.7294118, 1)
+shader_parameter/color3 = Color(0.23529412, 0.36862746, 0.54509807, 1)
+shader_parameter/color4 = Color(0.14509805, 0.22745098, 0.36862746, 1)

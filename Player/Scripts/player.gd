@@ -28,7 +28,6 @@ func _physics_process(delta):
 	modify_directions_by_camera_angle()
 	
 	##dependent info shared between components
-	rail_grinding_component.wants_dismount = input_component.jump_pressed
 	gravity_component.near_wall = wall_run_component.wall_nearby()
 	gravity_component.near_wall_normal = wall_run_component.wall_normal
 	
@@ -36,15 +35,8 @@ func _physics_process(delta):
 	state.validate_state(self)
 	state.tic(self,delta)
 	
-	
-	if rail_grinding_component.grind_shape_cast.is_colliding():
-		rail_grinding_component.rail_grinding(delta)
-		rail_grinding_component.grind_timer(delta)
-		
-	if grinding and not rail_grinding_component.grind_shape_cast.is_colliding():
-		rail_grinding_component.detach_from_rail()
-		
 	gravity_component.tik(delta)
+	
 	move_and_slide()
 
 
