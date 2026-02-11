@@ -5,3 +5,5 @@ extends Node
 
 func update():
 	state_label.text = player.state.get_script().get_global_name()
+	if player.state == PlayerStates.TRAPJUMPSTATE:
+		print(player.velocity)

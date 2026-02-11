@@ -28,9 +28,6 @@ func _physics_process(delta):
 	## ALL MOVEMENT COMPONENTS MUST UPDATE IN FUNCTION TO ADJUST BY CAMERA
 	modify_directions_by_camera_angle()
 	
-	##dependent info shared between components
-	gravity_component.near_wall = wall_run_component.wall_nearby()
-	gravity_component.near_wall_normal = wall_run_component.wall_normal
 	
 	## State Logic##
 	state.validate_state(self)
@@ -61,8 +58,6 @@ func change_state_to(next_state: BasePlayerState):
 
 func modify_directions_by_camera_angle():
 	var modified_direction = get_move_input()
-	
-	wall_run_component.direction = modified_direction
 	movement_component.move_dir = modified_direction
 	gravity_component.mov_dir = modified_direction
 

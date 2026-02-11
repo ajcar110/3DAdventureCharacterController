@@ -364,12 +364,8 @@ transform = Transform3D(-0.5705273, 0, 0.8212787, 0, 1, 0, -0.8212787, 0, -0.570
 mesh = SubResource("CylinderMesh_fgfdw")
 material = ExtResource("2_6idp7")
 
-[node name="StaticTrapeze" type="CSGBox3D" parent="." unique_id=1938446210]
+[node name="StaticTrapezeBar2" parent="." unique_id=1737508035 instance=ExtResource("6_548gw")]
 transform = Transform3D(0.8617886, 0, 0.50726765, 0, 1, 0, -0.50726765, 0, 0.8617886, -82.816986, 33.241024, -151.00024)
-use_collision = true
-collision_layer = 5
-collision_mask = 0
-size = Vector3(9.754, 0.5, 0.5)
 
 [node name="Canyon" type="CSGCombiner3D" parent="." unique_id=129268641]
 use_collision = true
@@ -760,5 +756,5 @@ path_u_distance = 1.0
 path_joined = false
 smooth_faces = true
 
-[node name="StaticTrapezeBar" parent="." unique_id=1737508035 instance=ExtResource("6_548gw")]
+[node name="StaticTrapezeBar" parent="." unique_id=2065572290 instance=ExtResource("6_548gw")]
 transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 85, 22, -35)

@@ -42,7 +42,10 @@ func tik(delta: float):
 		#Gravity
 	if body.velocity.y > max_fall_speed and current_gravity(body.state) != null_gravity:
 		body.velocity.y += current_gravity(body.state) * delta
-	else : body.velocity.y = 0.0
+	elif current_gravity(body.state) == null_gravity:
+		body.velocity.y = 0.0
+	else:
+		return
 func jump():
 	body.velocity.y = jump_velocity
 	visuals.rotation_degrees.z = 0
@@ -67,13 +70,6 @@ func current_gravity(state) -> float:
 			return jump_gravity
 		PlayerStates.FALL:
 			return jump_gravity
-			
-		PlayerStates.WALLRUN:
-			if body.input_component.move_dir != Vector3.ZERO:
-				return wall_gravity
-			else:
-				return wall_drop_gravity
-				
 		PlayerStates.GRIND:
 			return null_gravity
 			
@@ -97,8 +93,6 @@ func validate_jump(state: BasePlayerState) -> bool:
 			return can_air_jump
 		PlayerStates.FALL:
 			return can_air_jump
-		PlayerStates.WALLRUN:
-			return can_wall_jump
 		PlayerStates.GRIND:
 			return true
 		PlayerStates.TRAPIDLESTATE:

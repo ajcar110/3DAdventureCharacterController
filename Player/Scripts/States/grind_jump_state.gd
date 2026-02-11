@@ -8,7 +8,7 @@ func enter(player: Player) -> void:
 	player.gravity_component.jump()
 	
 	var forward = -player.camera_component.global_transform.basis.z
-	player.movement_component.apply_velocity_from_move_dir(forward,20.0)
+	player.movement_component.set_velocity_force_in_direction(forward,20.0)
 	
 	player.rail_grinding_component.grind_shape_cast.enabled = false
 	player.grinding = false

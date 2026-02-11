@@ -12,6 +12,11 @@ func validate_state(player: Player) -> void:
 		player.change_state_to(PlayerStates.IDLE)
 	if player.velocity.y < 0.0:
 		player.change_state_to(PlayerStates.FALL)
+	
+	## Trapeze
+	if player.trapeze_component.trapeze_shape.is_colliding():
+		player.change_state_to(PlayerStates.TRAPIDLESTATE)
+	
 
 func tic(player: Player,delta: float) -> void:
 	player.movement_component.tik(delta)

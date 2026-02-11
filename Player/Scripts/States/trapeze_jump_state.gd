@@ -4,8 +4,9 @@ extends BasePlayerState
 
 func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Swing")
-	var forward = -player.camera_component.global_transform.basis.z
-	player.movement_component.apply_velocity_from_move_dir(forward,20.0)
+	player.gravity_component.jump()
+	var forward = -player.global_transform.basis.z
+	player.movement_component.set_velocity_force_in_direction(forward,20.0)
 	player.trapeze_component.trapeze_shape.enabled = false
 
 

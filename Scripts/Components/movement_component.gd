@@ -39,6 +39,11 @@ func apply_velocity_from_move_dir(direction: Vector3, speed: float = base_speed)
 		body.velocity.x = move_toward(body.velocity.x, 0, deceleration)
 		body.velocity.z = move_toward(body.velocity.z, 0, deceleration)
 
+func set_velocity_force_in_direction(direction: Vector3, speed: float = base_speed) -> void:
+	if direction:
+		body.velocity.x = direction.x * speed
+		body.velocity.z = direction.z * speed
+		
 func turn_to(direction: Vector3) -> void:
 	if direction:
 		var yaw := atan2(-direction.x,-direction.z)
