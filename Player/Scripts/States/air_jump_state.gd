@@ -2,7 +2,7 @@ class_name AirJumpState
 extends BasePlayerState
 
 func enter(player: Player) -> void:
-	player.animation_player.play("PlayerAnimations/Swing")
+	player.animation_player.play("PlayerAnimations/Jump")
 	player.gravity_component.jump()
 	player.gravity_component.can_air_jump = false
 

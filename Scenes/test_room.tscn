@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cwke30rypypu" path="res://Assets/gridtexture.png" id="3_3tvqv"]
 [ext_resource type="Material" uid="uid://cyu38yc1jgb1q" path="res://Assets/Materials/water_shader_mat.tres" id="3_afs4w"]
 [ext_resource type="Script" uid="uid://bjcu0wy0kqv3n" path="res://Scripts/grind_rail.gd" id="4_afs4w"]
+[ext_resource type="PackedScene" uid="uid://sg2ijt28lvk0" path="res://Scenes/static_trapeze_bar.tscn" id="6_548gw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ycph5"]
 sky_top_color = Color(0.11764706, 0.11372549, 0.22352941, 1)
@@ -363,6 +364,13 @@ transform = Transform3D(-0.5705273, 0, 0.8212787, 0, 1, 0, -0.8212787, 0, -0.570
 mesh = SubResource("CylinderMesh_fgfdw")
 material = ExtResource("2_6idp7")
 
+[node name="StaticTrapeze" type="CSGBox3D" parent="." unique_id=1938446210]
+transform = Transform3D(0.8617886, 0, 0.50726765, 0, 1, 0, -0.50726765, 0, 0.8617886, -82.816986, 33.241024, -151.00024)
+use_collision = true
+collision_layer = 5
+collision_mask = 0
+size = Vector3(9.754, 0.5, 0.5)
+
 [node name="Canyon" type="CSGCombiner3D" parent="." unique_id=129268641]
 use_collision = true
 collision_mask = 0
@@ -607,10 +615,6 @@ path_joined = false
 smooth_faces = true
 material = SubResource("StandardMaterial3D_hjqbe")
 
-[node name="CSGBox3D10" type="CSGBox3D" parent="Canyon" unique_id=1938446210]
-transform = Transform3D(0.8617886, 0, 0.50726765, 0, 1, 0, -0.50726765, 0, 0.8617886, -82.816986, 33.241024, -151.00024)
-size = Vector3(9.754, 0.5, 0.5)
-
 [node name="CSGMesh3D42" type="CSGMesh3D" parent="Canyon" unique_id=1996464403]
 transform = Transform3D(-0.177308, 0, -0.9841555, 0, 1, 0, 0.9841555, 0, -0.177308, -19.591904, -15.06815, 20.771038)
 operation = 2
@@ -755,3 +759,6 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 smooth_faces = true
+
+[node name="StaticTrapezeBar" parent="." unique_id=1737508035 instance=ExtResource("6_548gw")]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 85, 22, -35)

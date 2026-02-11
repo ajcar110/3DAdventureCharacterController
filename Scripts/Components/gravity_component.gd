@@ -17,6 +17,7 @@ extends Node
 @onready var fall_gravity: float = (-2.0 * jump_height) / ( time_to_fall * time_to_fall)
 @onready var wall_gravity: float = (-2.0 * jump_height) / (time_to_wall_fall * time_to_wall_fall)
 @onready var wall_drop_gravity: float = (-2.0 * jump_height) / (time_to_wall_drop * time_to_wall_drop)
+@export var null_gravity: float = 100000.0 ## Super high so that it never effects fall speed when used for checks "like 0.0 would"
 @onready var jump_velocity: float = (2.0 * jump_height) / time_to_jump_peak
 @onready var wall_jump_velocity: float = jump_height / time_to_jump_peak
 
@@ -39,9 +40,9 @@ func tik(delta: float):
 
 
 		#Gravity
-	if body.velocity.y > max_fall_speed:
+	if body.velocity.y > max_fall_speed and current_gravity(body.state) != null_gravity:
 		body.velocity.y += current_gravity(body.state) * delta
-
+	else : body.velocity.y = 0.0
 func jump():
 	body.velocity.y = jump_velocity
 	visuals.rotation_degrees.z = 0
@@ -65,7 +66,7 @@ func current_gravity(state) -> float:
 		PlayerStates.JUMP:
 			return jump_gravity
 		PlayerStates.FALL:
-			return fall_gravity
+			return jump_gravity
 			
 		PlayerStates.WALLRUN:
 			if body.input_component.move_dir != Vector3.ZERO:
@@ -74,11 +75,13 @@ func current_gravity(state) -> float:
 				return wall_drop_gravity
 				
 		PlayerStates.GRIND:
-			return 0.0
+			return null_gravity
 			
 		PlayerStates.GRINDJUMP:
 			return jump_gravity
 			
+		PlayerStates.TRAPIDLESTATE:
+			return null_gravity
 	return fall_gravity
 
 
@@ -97,5 +100,7 @@ func validate_jump(state: BasePlayerState) -> bool:
 		PlayerStates.WALLRUN:
 			return can_wall_jump
 		PlayerStates.GRIND:
+			return true
+		PlayerStates.TRAPIDLESTATE:
 			return true
 	return false

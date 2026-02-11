@@ -4,8 +4,8 @@ extends BasePlayerState
 
 func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Fall")
-	player.rail_grinding_component.grind_shape_cast.enabled= true
-
+	player.rail_grinding_component.grind_shape_cast.enabled = true
+	player.trapeze_component.trapeze_shape.enabled = true
 
 
 func validate_state(player: Player) -> void:
@@ -17,7 +17,9 @@ func validate_state(player: Player) -> void:
 	if player.wall_run_component.wall_nearby() and player.input_component.grab_held:
 		player.change_state_to(PlayerStates.WALLRUN)
 		
-
+	## Trapeze
+	if player.trapeze_component.trapeze_shape.is_colliding() and player.input_component.grab_held:
+		player.change_state_to(PlayerStates.TRAPIDLESTATE)
 	## AirJump
 	if (player.input_component.jump_pressed and
 	 player.gravity_component.validate_jump(self)):

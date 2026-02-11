@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdmuvatl4b4h0"]
 
-[node name="ToDo" type="Control"]
+[node name="ToDo" type="Control" unique_id=270643370]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -8,13 +8,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=969994959]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 15.0
+offset_right = 651.0
+offset_bottom = 220.0
 text = "TO DO:
-Redo it all into state machine! you fool
-make smoother curves for rails but they are g2g
+trapeze
 wall jump racast system to cover more infront and possibly a straight ahead version
 swiming
 sneaking

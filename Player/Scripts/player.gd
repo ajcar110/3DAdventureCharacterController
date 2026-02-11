@@ -9,6 +9,7 @@ extends CharacterBody3D
 @export var wall_run_component: WallRunComponent
 @export var gravity_component: GravityComponent
 @export var rail_grinding_component: RailGrindComponent
+@export var trapeze_component: TrapezeComponent
 @export var animation_player: AnimationPlayer
 @export var debug_component: Node
 
@@ -64,3 +65,7 @@ func modify_directions_by_camera_angle():
 	wall_run_component.direction = modified_direction
 	movement_component.move_dir = modified_direction
 	gravity_component.mov_dir = modified_direction
+
+
+func stop_moving() -> void:
+	velocity = Vector3.ZERO
