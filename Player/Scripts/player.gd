@@ -6,10 +6,10 @@ extends CharacterBody3D
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var camera_component: CameraComponent
-@export var wall_run_component: WallRunComponent
 @export var gravity_component: GravityComponent
 @export var rail_grinding_component: RailGrindComponent
 @export var trapeze_component: TrapezeComponent
+@export var swim_component: SwimComponent
 @export var animation_player: AnimationPlayer
 @export var debug_component: Node
 

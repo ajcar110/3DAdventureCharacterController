@@ -24,5 +24,5 @@ func find_correct_direction(player: Player, bar: TrapezeBar):
 
 
 func _on_trapeze_timer_timeout():
-	if player.state == PlayerStates.TRAPIDLESTATE:
-		player.change_state_to(PlayerStates.TRAPJUMPSTATE)
+	if player.state == PlayerStates.TRAPIDLE:
+		player.change_state_to(PlayerStates.TRAPJUMP)

@@ -16,7 +16,7 @@ func validate_state(player: Player) -> void:
 		
 	## Trapeze
 	if player.trapeze_component.trapeze_shape.is_colliding():
-		player.change_state_to(PlayerStates.TRAPIDLESTATE)
+		player.change_state_to(PlayerStates.TRAPIDLE)
 	
 	## AirJump
 	if (player.input_component.jump_pressed and

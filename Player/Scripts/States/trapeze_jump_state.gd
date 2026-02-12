@@ -6,8 +6,9 @@ func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Swing")
 	player.gravity_component.jump()
 	var forward = -player.global_transform.basis.z
-	player.movement_component.set_velocity_force_in_direction(forward,20.0)
+	player.movement_component.set_velocity_force_in_direction(forward,12.0)
 	player.trapeze_component.trapeze_shape.enabled = false
+	player.gravity_component.can_air_jump = true
 
 
 

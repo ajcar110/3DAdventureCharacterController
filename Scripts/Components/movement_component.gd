@@ -7,8 +7,11 @@ extends Node
 
 @export_group("Movement")
 @export var base_speed: float = 12.0
-@export var acceleration: float = 0.5
-@export var deceleration: float = 1.0
+@export var swim_speed: float= 6.0
+@export var ground_acceleration: float = 0.5
+@export var ground_deceleration: float = 1.0
+@export var air_acceleration: float = 0.5
+@export var air_deceleration: float = 1.0
 @export var top_walk_speed: float = 8.5
 
 
@@ -20,17 +23,22 @@ func tik(delta: float) -> void:
 	if body == null:
 		return
 	
-	apply_velocity_from_move_dir(move_dir)
-	turn_to(move_dir)
+	
 	if body.is_on_floor():
+		apply_velocity_from_move_dir(move_dir)
 		align_with_floor(floor_ray.get_collision_normal())
 		body.global_transform = body.global_transform.interpolate_with(xform, 0.3)
 	elif not body.is_on_floor():
+		apply_velocity_from_move_dir(move_dir,base_speed,air_acceleration,air_deceleration)
 		align_with_floor(Vector3.UP)
 		body.global_transform = body.global_transform.interpolate_with(xform, 0.3)
+	turn_to(move_dir)
 	
 	
-func apply_velocity_from_move_dir(direction: Vector3, speed: float = base_speed) -> void:
+func apply_velocity_from_move_dir(direction: Vector3,
+	speed: float = base_speed,
+	acceleration: float = ground_acceleration,
+	deceleration: float = ground_deceleration) -> void:
 	if direction:
 		body.velocity.x = move_toward(body.velocity.x, speed * direction.x, acceleration)
 		body.velocity.z = move_toward(body.velocity.z, speed * direction.z, acceleration)

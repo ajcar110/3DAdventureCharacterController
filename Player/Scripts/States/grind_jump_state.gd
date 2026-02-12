@@ -8,7 +8,7 @@ func enter(player: Player) -> void:
 	player.gravity_component.jump()
 	
 	var forward = -player.camera_component.global_transform.basis.z
-	player.movement_component.set_velocity_force_in_direction(forward,20.0)
+	player.movement_component.set_velocity_force_in_direction(forward,5.0)
 	
 	player.rail_grinding_component.grind_shape_cast.enabled = false
 	player.grinding = false
@@ -24,3 +24,7 @@ func validate_state(player: Player) -> void:
 	if (player.input_component.jump_pressed and
 	 player.gravity_component.validate_jump(self)):
 		player.change_state_to(PlayerStates.AIRJUMP)
+
+func tic(player: Player,delta: float) -> void:
+	var forward = -player.camera_component.global_transform.basis.z
+	player.movement_component.turn_to(forward)
