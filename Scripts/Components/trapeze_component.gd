@@ -4,11 +4,11 @@ extends Node3D
 @onready var trapeze_shape:ShapeCast3D = $TrapezeShapeCast
 @onready var trapeze_timer = $TrapezeTimer
 @onready var player : Player = $".."
+var bar: TrapezeBar
 
 
 func attatch_player(player: Player) -> void:
-	var bar: TrapezeBar = trapeze_shape.get_collider(0).owner
-	player.global_position = bar.player_position_marker.global_position
+	bar = trapeze_shape.get_collider(0).owner
 	find_correct_direction(player,bar)
 	trapeze_timer.start()
 
@@ -22,6 +22,12 @@ func find_correct_direction(player: Player, bar: TrapezeBar):
 	if dot_product < 0.0:
 		player.look_at(bar.player_back_marker.global_position)
 
+func move_to_position(player: Player)-> void :
+		player.global_position = lerp(
+		player.global_position,
+		bar.player_position_marker.global_position,
+		0.3)
+		find_correct_direction(player,bar)
 
 func _on_trapeze_timer_timeout():
 	if player.state == PlayerStates.TRAPIDLE:

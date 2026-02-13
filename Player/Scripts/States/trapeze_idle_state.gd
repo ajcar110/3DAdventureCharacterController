@@ -8,3 +8,6 @@ func enter(player: Player) -> void:
 	var old_h_velocity = Vector2(player.velocity.x,player.velocity.z)
 	player.stop_moving()
 	player.trapeze_component.attatch_player(player)
+
+func tic(player: Player,delta: float) -> void:
+	player.trapeze_component.move_to_position(player)

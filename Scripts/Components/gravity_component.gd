@@ -18,14 +18,15 @@ extends Node
 
 
 
+
 var can_air_jump: = true
 var mov_dir := Vector3.ZERO
+var was_on_floor:= false
 
 func _ready():
 	PlayerSignals.rail_complete.connect(jump)
 
 func tik(delta: float):
-	
 	if body.is_on_floor():
 		can_air_jump = true
 

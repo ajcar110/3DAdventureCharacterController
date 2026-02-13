@@ -1,22 +1,37 @@
 [gd_scene format=3 uid="uid://cdmuvatl4b4h0"]
 
-[node name="ToDo" type="Control" unique_id=270643370]
-layout_mode = 3
+[node name="ToDo" type="GridContainer" unique_id=1332369608]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 2
 
 [node name="Label" type="Label" parent="." unique_id=969994959]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 15.0
-offset_right = 651.0
-offset_bottom = 220.0
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "TO DO:
 ledge grabs
 Swinging trapeze
-swiming
+diving
 sneaking
 carrying item"
+
+[node name="Label2" type="Label" parent="." unique_id=718185136]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Animations Needed:
+Run
+Walk
+Idle
+Jump
+AirJump
+Grind
+SwimIdle
+Swim
+fall
+TrapezeIdle
+TrapezeSwing"

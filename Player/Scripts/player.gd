@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody3D
 
 @export var visuals: Node3D
+@export var player_stats: PlayerStats
 @export var input_component: InputComponent
 @export var movement_component: MovementComponent
 @export var camera_component: CameraComponent
@@ -12,6 +13,8 @@ extends CharacterBody3D
 @export var swim_component: SwimComponent
 @export var animation_player: AnimationPlayer
 @export var debug_component: Node
+
+@onready var cyote_timer = $CyoteTimer
 
 var wall_running:= false
 var grinding := false
@@ -34,8 +37,10 @@ func _physics_process(delta):
 	state.tic(self,delta)
 	
 	gravity_component.tik(delta)
-	
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	if was_on_floor and !is_on_floor():
+		cyote_timer.start()
 
 
 ## Reads Directional Input for Player, Modifies it based on Camera

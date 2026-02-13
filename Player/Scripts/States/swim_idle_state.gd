@@ -6,6 +6,7 @@ extends BasePlayerState
 func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/SwimIdle")
 	player.stop_moving()
+	player.gravity_component.can_air_jump = true
 
 func validate_state(player: Player) -> void:
 	if (player.input_component.jump_pressed and

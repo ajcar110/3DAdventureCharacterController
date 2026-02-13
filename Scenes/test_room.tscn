@@ -33,7 +33,7 @@ radial_segments = 6
 albedo_texture = ExtResource("4_hjqbe")
 metallic = 1.0
 metallic_specular = 0.0
-uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
@@ -300,7 +300,7 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 shadow_enabled = true
 
 [node name="Player" parent="." unique_id=1893398292 instance=ExtResource("1_ycph5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 23, -33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37, 4, -33)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1394858396]
 environment = SubResource("Environment_rx0dc")

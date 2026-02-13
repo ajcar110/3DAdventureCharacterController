@@ -17,11 +17,14 @@ func validate_state(player: Player) -> void:
 	## Trapeze
 	if player.trapeze_component.trapeze_shape.is_colliding():
 		player.change_state_to(PlayerStates.TRAPIDLE)
-	
-	## AirJump
-	if (player.input_component.jump_pressed and
-	 player.gravity_component.validate_jump(self)):
-		player.change_state_to(PlayerStates.AIRJUMP)
+		
+	## CyoteTimerJump
+	if player.input_component.jump_pressed:
+		if !player.cyote_timer.is_stopped():
+			player.change_state_to(PlayerStates.JUMP)
+		## AirJump
+		elif player.gravity_component.validate_jump(self):
+			player.change_state_to(PlayerStates.AIRJUMP)
 	
 	## RailGrind
 	if player.rail_grinding_component.validate_grind():
