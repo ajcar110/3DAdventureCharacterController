@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://hq5g1h6380rv"]
+
+[ext_resource type="PackedScene" uid="uid://sg2ijt28lvk0" path="res://Scenes/static_trapeze_bar.tscn" id="1_gb51c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_548gw"]
+albedo_color = Color(1.9679704, 1.4904038, 3.8506573e-06, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2n0o"]
+albedo_color = Color(1.9679704, 1.4904038, 3.8506573e-06, 1)
+
+[node name="StreetLight" type="Node3D" unique_id=1448109676]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticTrapezeBar" parent="." unique_id=1737508035 instance=ExtResource("1_gb51c")]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=740401501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -3.2125, 0)
+radius = 0.2
+height = 6.575
+sides = 6
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2061989946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.7414551, 0)
+size = Vector3(3, 1.5170898, 3)
+material = SubResource("StandardMaterial3D_548gw")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGBox3D" unique_id=865303989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+operation = 1
+radius = 0.5650419
+material = SubResource("StandardMaterial3D_f2n0o")
