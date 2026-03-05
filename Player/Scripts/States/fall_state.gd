@@ -6,6 +6,7 @@ func enter(player: Player) -> void:
 	player.animation_player.play("PlayerAnimations/Fall")
 	player.rail_grinding_component.grind_shape_cast.enabled = true
 	player.trapeze_component.trapeze_shape.enabled = true
+	player.velocity.y = 0.0
 
 
 func validate_state(player: Player) -> void:
@@ -29,6 +30,11 @@ func validate_state(player: Player) -> void:
 	## RailGrind
 	if player.rail_grinding_component.validate_grind():
 		player.change_state_to(PlayerStates.GRIND)
+	
+	##LedgeGrab
+	if (player.ledge_grab_component.edge_detected and
+	player.input_component.grab_held):
+		player.change_state_to(PlayerStates.LEDGEIDLE)
 	
 func tic(player: Player,delta: float) -> void:
 	player.movement_component.tik(delta)

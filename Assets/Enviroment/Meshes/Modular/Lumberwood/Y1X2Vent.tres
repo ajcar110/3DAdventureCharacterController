@@ -1,0 +1,37 @@
+[gd_resource type="ArrayMesh" format=4 uid="uid://nkv2eo2sc6cj"]
+
+[ext_resource type="Material" uid="uid://dhpnbmi3w2qvg" path="res://Assets/Enviroment/Materials/Modular/LumberWoods/lumberwood_wall_material.tres" id="1_3acao"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3acao"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -0.5, 2, 1, 1),
+"format": 34896613377,
+"index_count": 240,
+"index_data": PackedByteArray("FgAAABcAGAAWABcAFgAZAAAADwAWABgAGgAZABYADwAaABYAGgAFABkAGQAFAAEAGgAUAAUABQAUABUABQAVAAEAGgAbABQADwAbABoAFAAcABUAFAAbABwAAQAVABEADwATABsAGQABAAIAAAAZAAIAAQARAB0AAgABAB0AFQAeABEAHgAdABEAFQAcAB4AAgAdAB8AAAACAAQABAACAB8ABAAGAAAAIAAfAB0AHgAgAB0AHAANAB4ADQAgAB4AHAASAA0AGwASABwAGwATABIAIQANABIADQAhACAAEAASABMAIQASABAAEAATAA8AIQAiACAAIAAiAB8AEAAjACEAIQAjACIADwAkABAAEAAkACMADwAYACQAIgAlAB8ABAAfACUAIwAmACIAIgAmACUAJAAnACMAIwAnACYAGAAOACQAJAAOACcAGAAHAA4AGAAXAAcADgAMACcAJwALACYAJwAMAAsADgAKAAwABwAKAA4ACgALAAwAFwAJAAcABwAJAAoAFwAoAAkAAAAoABcAAAAGACgACQApAAoACgApAAsACQAoACkAKAAGAAgAKAAIACkABAAIAAYAJQAIAAQAKQAIAAMAJQADAAgAKQADAAsAJgADACUAJgALAAMA"),
+"lods": [0.0002819093, PackedByteArray("AAABAAIAAgABAAMAAAACAAQABAACAAMAAAAFAAEABAAGAAAAAAAGAAcABQAAAAcABAAIAAYAAwAIAAQACQAGAAgABwAGAAkACQAIAAoABwAJAAoACgAIAAsACAADAAsACgALAAwADQALAAMADQAMAAsADgAKAAwABwAKAA4ADgAMAA0ADwAHAA4ADwAFAAcAEAAOAA0ADwAOABAADQADABEAAQARAAMADQASABAAEgANABEAEAATAA8AEAASABMADwATABQAFAATABIADwAUAAUAAQAVABEAFQASABEABQAVAAEAFAASABUABQAUABUA")],
+"name": "LumberwoodsTrim",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("/78AAP//AAD/P/9///8AAP9//3///wAA////////AAD/v/9///8AAP8/AAD//wAA//8AAP//AAD/vwAAAAAAAP///3///wAA//8AAAAAAAD///9/AAAAAP//////fwAA/////wAAAAAAAP//AAAAAP+//38AAAAA/z8AAAAAAAD/P/9/AAAAAAAA/////wAAAAD/fwAAAAAAAAAAAAAAAAAAAAD//wAAAAD/f///AAD/fwAA/38AAP+/AAD/fwAA/38AAAAAAAD/fwAA//8AAP8/AAD/fwAAAAAAAP9/AAAAAP9//38AAP8//////wAAAAD///9/AAD/f/////8AAP8/////fwAA/z///wAAAAD/f////38AAP9///8AAAAA/3//fwAAAAD/v/////8AAP+/////fwAA/7///wAAAAD//wAA/38AAP///3//fwAA")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "LumberwoodWalls_Cube_003"
+_surfaces = [{
+"aabb": AABB(-1, 0, -0.5, 2, 1, 1),
+"attribute_data": PackedByteArray("/8//f/+v/2//v/9v/6//f//P/2//v/9P/6//T//f/z//z/9P/9//T/+f/z//n/9P/6//T/+f/z//3/8//5//T//P/0//3/9P/8//f/+v/3//r/9v/8//b//P/3//v/9v/8//b/+//3//r/9v/7//f/+v/3//v/9v/1//T/9//0//f/9v/1//b/9P/0//T/9vAAD/T/8P/08AAP9v/w//b/+v/2//v/9//6//f/+//2//r/9P/6//P/+//z//z/9P/8//P//P/3//r/9v/8//b/+v/3//z/9//7//b//P/2//v/9//8//f/+v/3//r/9v/8//b/+v/0//r/8//8//P//P/08AAP9P/z//X/8//2//P/9PAAD/b/9v/1//f/9f/2//T/9v/2//X/9f/0//X/+//3//r/8//7//P//P/z//r/8//7//T/+//z//z/8//7//f/+//2//D/9fAAD/X/+//3//v/9v/7//T/+//3//v/9v/7//T/+//z//L/9f/y//b/8v/0//H/9P/x//X/8f/2//D/9P/w//X/8P/28AAP9f"),
+"format": 34896613399,
+"index_count": 240,
+"index_data": PackedByteArray("RgAfAEcARgBIAB8ASQBGAEcASQBHACAAIQBGAEkASgBIAEYAIQBKAEYASgAeAEgASgAiAB4ASgBLACIAIQBLAEoAIQAjAEsATAABAAIATAADAAEAAABMAAIAAAACAAQABQBNAE4ABQAGAE0ABgAKAE0ABgALAAoACAAFAE4ACABOAE8ATwAJAAgATwAHAAkADAANAFAADAAPAA0AUQAMAFAAUQBQAFIAEABRAFIAEABSAFMAUwARABAAUwAOABEAVAAUAFUAVAATABQAEgBUAFUAEgBVABUAFgAXABgAFgAZABcAGgAbABwAGgAdABsAJABWAFcAJAAlAFYAVwBWACcAVwAnACYAKAApACoAKAArACkAWAAyAFkAWAA0ADIAMQBYAFkAMQBZADMAWgAtAC4AWgAsAC0ALwBaAC4ALwAuADAANQA2ADcANQA4ADYAWwA7AFwAWwA6ADsAOQBbAFwAOQBcADwAXQA+AF4AXQA9AD4AQABdAF4AQABeAD8AXwBDAGAAXwBCAEMAYQBCAF8AYQBEAEIAYgBhAF8AYwBfAGAAYgBfAGMAYwBgAGQAZQBiAGMAZgBjAGQAZQBjAGYAQQBlAGYAZgBkAGcAQQBmAGgAaABmAGcAaABnAEUA"),
+"lods": [0.0002819093, PackedByteArray("AAABAAIAAAADAAEAAAACAAQABQAGAAcACAAFAAcABwAJAAgABgAKAAcABgALAAoADAANAA4ADAAPAA0AEAAMAA4ADgARABAAEgATABQAEgAUABUAFgAXABgAFgAZABcAGgAbABwAGgAdABsAHgAfACAAIQAeACAAIQAiAB4AIQAjACIAJAAlACYAJgAlACcAKAApACoAKAArACkALAAtAC4ALwAsAC4ALwAuADAAMQAyADMAMQA0ADIANQA2ADcANQA4ADYAOQA6ADsAOQA7ADwAPQA+AD8AQAA9AD8AQQBCAEMAQQBEAEIAQQBDAEUA")],
+"material": ExtResource("1_3acao"),
+"name": "LumberwoodsTrim",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 105,
+"vertex_data": PackedByteArray("/78AAP//AID/P/9///8AgP9//3///wCA/z8AAP//AID/v/9///8AgP9//3///wCA/z//f///AID///////8AgP+//3///wCA////f///AIAAAP////8AgAAA/3///wCA/7//fwAA////////AAD//wAA//8AAP//////fwAA////P/9/AAD//wAA/38AAP///z8AAAAA////vwAAAAD///+//38AAP///z//fwAA////PwAA//8AgAAA/3///wCA/z//f///AIAAAAAA//8AgP8//38AAP//AAAAAAAA////PwAAAAD//wAA/38AAP///z8AAP///7//vwAA////v/+/AAAAAP+//z8AAAAA/78AAAAA////vwAAAAAAAP+//78AAP///7///wAA////v/+/AAAAAP+///8AAAAA/7//v/9///8AgP//AAD//wCA/78AAP//AID///9///8AgP///3////+//////////7///////3//v////38AAP+//////wAA/7///wAAAAD/v////3////+/////fwAA/7///wAA////v/+/AAAAAP//////fwAA////v/9/AAD/////AAAAAP//AAAAAP///78AAAAAAAD/vwAA/38AAP+/AAD/f////78AAP9/AAD/vwAA//8AAP+/AAD//////78AAP9/////vwAA//8AAP+///////9//7//////////v/////8AAP+/AAD//////7//fwAA/3//v/+/AAD/f/+//38AAP///7//fwAAAAD/v/8/AAD/f/+/AAAAAP9//7//fwAA//8AgP8//////wCA/3//////AID/v/////8AgP+///8AAP///3//fwAA////f///AAD///8///8AAP///38AAAAA////f/9/AAD/////AAD/f/+//78AAP9//7///wAA/3//v////3//f/+/////f/9//78AAAAA/3//vwAA/3//f/+/AAD/f/9//78AAP///3//v/+/////f/+//7///////7//v///AAD/v/9///8AAP+//3////9//7//f///////v/8///8AAP+//z////9//7//P///////vwAA////f/+//3////9/////f////3////9/////f////3////9/////f////3////9/////f////3/+//9//v//f////3/+//9//v//f/7//3/+//9/////f/7//3////9/////f////3////9/////f/7//3/+//9/////f/7/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/7//3/+//9//v//f/7//3////9/////f/7//3////9//v//f/7//3/+//9//v////9/////f////3////9/////fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/f/9/////f////3////9/////f/7//3/+//9//v//f/7//3/+//9//v8AAP9/AAD/f/9/AAD/fwAA/38AAP9//v//f/7//3/+//9//v////9/////f////3////9/////f////3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_3acao")

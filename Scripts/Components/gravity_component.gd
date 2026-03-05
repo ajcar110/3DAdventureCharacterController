@@ -89,6 +89,10 @@ func current_gravity(state) -> float:
 		
 		PlayerStates.SWIMSURFACE:
 			return null_gravity
+		
+		PlayerStates.LEDGEIDLE:
+			return null_gravity
+		
 	return fall_gravity
 
 
@@ -113,5 +117,7 @@ func validate_jump(state: BasePlayerState) -> bool:
 		PlayerStates.SWIMIDLE:
 			return true
 		PlayerStates.SWIMSURFACE:
+			return true
+		PlayerStates.LEDGEIDLE:
 			return true
 	return false

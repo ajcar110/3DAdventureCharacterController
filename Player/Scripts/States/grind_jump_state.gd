@@ -24,6 +24,7 @@ func validate_state(player: Player) -> void:
 	if (player.input_component.jump_pressed and
 	 player.gravity_component.validate_jump(self)):
 		player.change_state_to(PlayerStates.AIRJUMP)
+	
 
 func tic(player: Player,delta: float) -> void:
 	var forward = -player.camera_component.global_transform.basis.z

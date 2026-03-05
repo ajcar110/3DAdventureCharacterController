@@ -24,7 +24,7 @@ func _process(delta):
 	mouse_input = Vector2.ZERO
 	rotation_degrees.x += look_input.y
 	rotation_degrees.y += look_input.x
-	rotation_degrees.x = clampf(rotation_degrees.x,-15,17)
+	rotation_degrees.x = clampf(rotation_degrees.x,-15,45)
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta):

@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var gravity_component: GravityComponent
 @export var rail_grinding_component: RailGrindComponent
 @export var trapeze_component: TrapezeComponent
+@export var ledge_grab_component: LedgeGrabComponent
 @export var swim_component: SwimComponent
 @export var animation_player: AnimationPlayer
 @export var debug_component: Node
@@ -27,6 +28,7 @@ func _ready():
 func _physics_process(delta):
 	input_component.update()
 	debug_component.update()
+	ledge_grab_component.edge_detectiion()
 	
 	## ALL MOVEMENT COMPONENTS MUST UPDATE IN FUNCTION TO ADJUST BY CAMERA
 	modify_directions_by_camera_angle()
@@ -36,9 +38,14 @@ func _physics_process(delta):
 	state.validate_state(self)
 	state.tic(self,delta)
 	
+	#First Step of Cyote logic move_and_slide must be after 
+	#this and before Final Step
 	gravity_component.tik(delta)
 	var was_on_floor = is_on_floor()
+	
 	move_and_slide()
+	
+	#Final Step of Cyote Logic
 	if was_on_floor and !is_on_floor():
 		cyote_timer.start()
 

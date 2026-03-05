@@ -10,6 +10,7 @@ var move_left_held := false
 var move_right_held := false
 var move_forward_held := false
 var move_backward_held := false
+var cancel_pressed := false
 
 func update() -> void:
 	move_dir.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -22,3 +23,4 @@ func update() -> void:
 	move_backward_held = Input.is_action_pressed("move_backward")
 	move_left_held = Input.is_action_pressed("move_left")
 	move_right_held = Input.is_action_pressed("move_right")
+	cancel_pressed = Input.is_action_just_pressed("cancel")

@@ -22,3 +22,4 @@ func validate_state(player: Player) -> void:
 	if (player.input_component.jump_pressed and
 	 player.gravity_component.validate_jump(self)):
 		player.change_state_to(PlayerStates.AIRJUMP)
+	

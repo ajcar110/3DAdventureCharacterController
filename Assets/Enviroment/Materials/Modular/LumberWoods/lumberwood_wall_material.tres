@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dhpnbmi3w2qvg"]
+
+[ext_resource type="Shader" uid="uid://bdluoajoaqee4" path="res://ShaderScripts/core_light_shader.gdshader" id="1_qta75"]
+[ext_resource type="Texture2D" uid="uid://htafildkq2n6" path="res://Assets/Enviroment/LumberwoodWalls_Lumberwood_wall_trim_grey.png" id="2_52f47"]
+[ext_resource type="Texture2D" uid="uid://cmgbu1invk16j" path="res://Assets/Enviroment/Materials/Modular/LumberWoods/Textures/Lumberwood_wall_trim_twilight.png" id="3_52f47"]
+[ext_resource type="Texture2D" uid="uid://p0l2t3ug7jcp" path="res://Assets/Enviroment/LumberwoodWalls_Lumberwood_wall_trim_normal.png" id="3_fl42m"]
+[ext_resource type="Texture2D" uid="uid://b0hyudt3htype" path="res://Assets/Enviroment/Materials/Modular/LumberWoods/Textures/BrushBW_MatCap.png" id="4_52f47"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_52f47"]
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ri67e"]
+frequency = 0.006
+domain_warp_enabled = true
+domain_warp_amplitude = 29.78
+domain_warp_frequency = 0.12
+domain_warp_fractal_gain = 0.74
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wtfwi"]
+noise = SubResource("FastNoiseLite_ri67e")
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_52f47")
+shader = ExtResource("1_qta75")
+shader_parameter/unlit_area_color = Color(1, 0.7204924, 0.78436625, 1)
+shader_parameter/main_albedo_color = Color(0.50562704, 0.37482622, 0.50530314, 1)
+shader_parameter/emissive_color = Color(0, 1.6608336, 0.44104663, 1)
+shader_parameter/metal_color = Color(0.88395053, 0.5287077, 0.10186776, 1)
+shader_parameter/albedo_greyscale_texture = ExtResource("2_52f47")
+shader_parameter/albedo_twilight_texture = ExtResource("3_52f47")
+shader_parameter/has_metal_matcap = true
+shader_parameter/flip_matcap_horizontal = false
+shader_parameter/metal_matcap = ExtResource("4_52f47")
+shader_parameter/metal_threshold = 0.5
+shader_parameter/has_normals = true
+shader_parameter/normal_map = ExtResource("3_fl42m")
+shader_parameter/normal_scale = 1.0
+shader_parameter/light_noise = SubResource("NoiseTexture2D_wtfwi")
+shader_parameter/light_cuts = 68.0
+shader_parameter/shadow_scale = 10.0
+shader_parameter/direct_light_strength = 0.80000001192096
+shader_parameter/matcap_uv_offset = Vector2(0, 0)
+shader_parameter/matcap_uv_scale = Vector2(1, 1)

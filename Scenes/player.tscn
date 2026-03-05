@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://b643rel8a38nw" path="res://Player/Scripts/player_debug_component.gd" id="15_h4iuc"]
 [ext_resource type="Animation" uid="uid://ck6jnb5ab7sca" path="res://Assets/Player/Animations/SwimIdle.res" id="16_l6n3p"]
 [ext_resource type="Animation" uid="uid://snmnvolvhmrj" path="res://Assets/Player/Animations/TrapezeIdle.res" id="17_igrcy"]
+[ext_resource type="Script" uid="uid://c51o23hfgkpus" path="res://Scripts/Components/ledge_grab_component.gd" id="22_wpjfl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qqcod"]
 size = Vector3(2, 1.25, 1.25)
@@ -1065,17 +1066,20 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vgqql"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1051171775 node_paths=PackedStringArray("visuals", "input_component", "movement_component", "camera_component", "gravity_component", "rail_grinding_component", "trapeze_component", "animation_player", "debug_component") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=1051171775 node_paths=PackedStringArray("visuals", "player_stats", "input_component", "movement_component", "camera_component", "gravity_component", "rail_grinding_component", "trapeze_component", "ledge_grab_component", "swim_component", "animation_player", "debug_component") groups=["Player"]]
 collision_layer = 8
 floor_stop_on_slope = false
 script = ExtResource("1_cvnsp")
 visuals = NodePath("PlayerVisuals")
+player_stats = NodePath("PlayerStatComponent")
 input_component = NodePath("InputComponent")
 movement_component = NodePath("MovementComponent")
 camera_component = NodePath("CameraComponent")
 gravity_component = NodePath("GravityComponent")
 rail_grinding_component = NodePath("RailGrindComponent")
 trapeze_component = NodePath("TrapezeComponent")
+ledge_grab_component = NodePath("LedgeGrabComponent")
+swim_component = NodePath("SwimComponent")
 animation_player = NodePath("PlayerVisuals/AnimationPlayer")
 debug_component = NodePath("PlayerDebugComponent")
 
@@ -1092,7 +1096,7 @@ script = ExtResource("3_6t5aa")
 body = NodePath("..")
 visuals = NodePath("../PlayerVisuals")
 floor_ray = NodePath("../FloorRaycast")
-base_speed = 16.0
+base_speed = 10.0
 swim_speed = 9.0
 ground_deceleration = 2.57
 air_acceleration = 1.0
@@ -1157,8 +1161,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_3smsa")
 collision_mask = 2
 
+[node name="LedgeGrabComponent" type="Node3D" parent="." unique_id=1112790085]
+script = ExtResource("22_wpjfl")
+h_offset = 0.55
+v_offset = 2.0
+
+[node name="FloorRaycast" type="RayCast3D" parent="LedgeGrabComponent" unique_id=117523854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, -0.75)
+target_position = Vector3(0, -0.2, 0)
+debug_shape_custom_color = Color(0.8199125, 0.5753934, 0.26911017, 1)
+
+[node name="WallRaycast" type="RayCast3D" parent="LedgeGrabComponent" unique_id=397682557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
+target_position = Vector3(0, 0, -0.75)
+debug_shape_custom_color = Color(0.8199125, 0.5753934, 0.26911017, 1)
+
+[node name="LedgeFallTimer" type="Timer" parent="LedgeGrabComponent" unique_id=1698451435]
+wait_time = 0.25
+one_shot = true
+
 [node name="CameraComponent" type="SpringArm3D" parent="." unique_id=248571927 node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 top_level = true
 shape = SubResource("SphereShape3D_fkybt")
 spring_length = 3.5
@@ -1167,7 +1190,8 @@ script = ExtResource("2_vgqql")
 player = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="CameraComponent" unique_id=1742354221]
-transform = Transform3D(1, 0, 0, 0, 0.93075615, 0.3656404, 0, -0.3656404, 0.93075615, 0, 0.29495478, 3.089528)
+transform = Transform3D(1, 0, 0, 0, 0.9890159, 0.1478094, 0, -0.1478094, 0.9890159, 0, 0, 4.51)
+fov = 50.0
 
 [node name="Debug" type="Control" parent="." unique_id=1020449369]
 layout_mode = 3
@@ -2360,8 +2384,14 @@ target_position = Vector3(0, -1.25, 0)
 wait_time = 0.25
 one_shot = true
 
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1447974593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1403172, 0)
+light_color = Color(1, 0.71033335, 0.20999998, 1)
+omni_range = 6.413812
+
 [connection signal="timeout" from="TrapezeComponent/TrapezeTimer" to="TrapezeComponent" method="_on_trapeze_timer_timeout"]
 [connection signal="area_entered" from="SwimComponent/DeepWaterDetector" to="SwimComponent" method="_on_deep_water_detector_area_entered"]
 [connection signal="area_exited" from="SwimComponent/DeepWaterDetector" to="SwimComponent" method="_on_deep_water_detector_area_exited"]
 [connection signal="area_entered" from="SwimComponent/SurfaceWaterDetector" to="SwimComponent" method="_on_surface_water_detector_area_entered"]
 [connection signal="area_exited" from="SwimComponent/SurfaceWaterDetector" to="SwimComponent" method="_on_surface_water_detector_area_exited"]
+[connection signal="timeout" from="LedgeGrabComponent/LedgeFallTimer" to="LedgeGrabComponent" method="_on_ledge_fall_timer_timeout"]
